@@ -4,7 +4,7 @@
 
 ## 🌐 Веб-версия (работает на любом устройстве)
 
-**[Открыть приложение →](https://YOUR_USERNAME.github.io/PeriodicTableApp/web/)**
+**[Открыть приложение →](https://arthaslav.github.io/PeriodicTableApp/web/)**
 
 Веб-версия работает прямо в браузере на iPhone, Android, компьютере - без установки!
 
