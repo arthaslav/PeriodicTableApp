@@ -22,8 +22,7 @@ body {
 }
 
 #app {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 100%;
     min-height: 100vh;
 }
 
@@ -54,8 +53,6 @@ header h1 {
     justify-content: space-around;
     padding: 6px 0;
     z-index: 1000;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .nav-btn {
@@ -91,24 +88,24 @@ header h1 {
     display: block;
 }
 
-/* Periodic Table */
+/* Periodic Table - MOBILE FIRST */
 .table-container {
-    padding: 12px;
-    overflow-x: auto;
+    padding: 4px;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
 }
 
 #periodic-table {
     display: grid;
-    grid-template-columns: repeat(18, minmax(45px, 1fr));
-    gap: 2px;
-    max-width: 100%;
+    grid-template-columns: repeat(18, 1fr);
+    gap: 1px;
+    width: 100%;
 }
 
 .element-cell {
     aspect-ratio: 1;
-    min-width: 45px;
-    border: 1px solid var(--primary);
+    width: 100%;
+    border: 0.5px solid var(--primary);
     background: var(--background);
     display: flex;
     flex-direction: column;
@@ -117,7 +114,7 @@ header h1 {
     cursor: pointer;
     transition: all 0.2s;
     position: relative;
-    padding: 4px;
+    padding: 1px;
 }
 
 .element-cell:active {
@@ -126,37 +123,39 @@ header h1 {
 }
 
 .element-number {
-    font-size: 7px;
+    font-size: 5px;
     color: var(--gray);
     position: absolute;
-    top: 2px;
-    left: 3px;
+    top: 1px;
+    left: 2px;
 }
 
 .element-symbol {
-    font-size: 14px;
+    font-size: 10px;
     font-weight: 700;
     color: var(--primary);
+    line-height: 1;
 }
 
 .element-name {
-    font-size: 6px;
+    font-size: 4px;
     color: var(--primary);
     text-align: center;
-    line-height: 1.1;
+    line-height: 1;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .element-mass {
-    font-size: 6px;
+    font-size: 4px;
     color: var(--gray);
 }
 
 .empty-cell {
     aspect-ratio: 1;
-    min-width: 45px;
+    width: 100%;
 }
 
 /* Search View */
@@ -623,26 +622,55 @@ header h1 {
     background: var(--light-gray);
 }
 
+/* Tablet styles */
+@media (min-width: 600px) {
+    #periodic-table {
+        grid-template-columns: repeat(18, 1fr);
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    
+    .element-symbol {
+        font-size: 14px;
+    }
+    
+    .element-name {
+        font-size: 6px;
+    }
+    
+    .element-number {
+        font-size: 7px;
+    }
+    
+    .element-mass {
+        font-size: 6px;
+    }
+}
+
 /* Desktop styles */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
+    #app {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
     header h1 {
         font-size: 28px;
     }
     
     .table-container {
         padding: 20px;
-        display: flex;
-        justify-content: center;
     }
     
     #periodic-table {
         grid-template-columns: repeat(18, 60px);
-        gap: 3px;
+        gap: 2px;
         width: fit-content;
     }
     
-    .element-cell, .empty-cell {
-        min-width: 60px;
+    .element-cell {
+        border: 1px solid var(--primary);
+        padding: 4px;
     }
     
     .element-symbol {
@@ -655,6 +683,8 @@ header h1 {
     
     .element-number {
         font-size: 8px;
+        top: 2px;
+        left: 4px;
     }
     
     .element-mass {
@@ -665,30 +695,6 @@ header h1 {
     .quiz-container {
         max-width: 600px;
         margin: 0 auto;
-    }
-    
-    .bottom-nav {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}
-
-/* Mobile optimization */
-@media (max-width: 480px) {
-    #periodic-table {
-        grid-template-columns: repeat(18, 40px);
-    }
-    
-    .element-cell, .empty-cell {
-        min-width: 40px;
-    }
-    
-    .element-symbol {
-        font-size: 12px;
-    }
-    
-    .element-name {
-        font-size: 5px;
     }
 }
 
