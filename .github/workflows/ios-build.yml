@@ -92,7 +92,6 @@ jobs:
         				B1000007 /* QuizManager.swift */,
         				B1000008 /* Theme.swift */,
         			);
-        			path = PeriodicTableApp;
         			sourceTree = "<group>";
         		};
         		E1000003 /* Products */ = {
