@@ -22,8 +22,12 @@ body {
 }
 
 #app {
+<<<<<<< HEAD
     max-width: 1200px;
     margin: 0 auto;
+=======
+    max-width: 100%;
+>>>>>>> 1b99ac5 (Add files via upload)
     min-height: 100vh;
 }
 
@@ -33,12 +37,20 @@ header {
     top: 0;
     background: var(--background);
     border-bottom: 1px solid var(--border);
+<<<<<<< HEAD
     padding: 12px 16px;
+=======
+    padding: 16px 20px;
+>>>>>>> 1b99ac5 (Add files via upload)
     z-index: 100;
 }
 
 header h1 {
+<<<<<<< HEAD
     font-size: 20px;
+=======
+    font-size: 24px;
+>>>>>>> 1b99ac5 (Add files via upload)
     font-weight: 600;
 }
 
@@ -52,10 +64,15 @@ header h1 {
     border-top: 1px solid var(--border);
     display: flex;
     justify-content: space-around;
+<<<<<<< HEAD
     padding: 6px 0;
     z-index: 1000;
     max-width: 1200px;
     margin: 0 auto;
+=======
+    padding: 8px 0;
+    z-index: 1000;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 .nav-btn {
@@ -63,12 +80,21 @@ header h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+<<<<<<< HEAD
     gap: 2px;
     background: none;
     border: none;
     color: var(--gray);
     font-size: 11px;
     padding: 6px;
+=======
+    gap: 4px;
+    background: none;
+    border: none;
+    color: var(--gray);
+    font-size: 12px;
+    padding: 8px;
+>>>>>>> 1b99ac5 (Add files via upload)
     cursor: pointer;
     transition: color 0.2s;
 }
@@ -78,8 +104,13 @@ header h1 {
 }
 
 .nav-btn svg {
+<<<<<<< HEAD
     width: 22px;
     height: 22px;
+=======
+    width: 24px;
+    height: 24px;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 /* Views */
@@ -93,13 +124,18 @@ header h1 {
 
 /* Periodic Table */
 .table-container {
+<<<<<<< HEAD
     padding: 12px;
+=======
+    padding: 20px;
+>>>>>>> 1b99ac5 (Add files via upload)
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
 
 #periodic-table {
     display: grid;
+<<<<<<< HEAD
     grid-template-columns: repeat(18, minmax(45px, 1fr));
     gap: 2px;
     max-width: 100%;
@@ -108,6 +144,16 @@ header h1 {
 .element-cell {
     aspect-ratio: 1;
     min-width: 45px;
+=======
+    grid-template-columns: repeat(18, 60px);
+    gap: 2px;
+    min-width: fit-content;
+}
+
+.element-cell {
+    width: 60px;
+    height: 60px;
+>>>>>>> 1b99ac5 (Add files via upload)
     border: 1px solid var(--primary);
     background: var(--background);
     display: flex;
@@ -117,7 +163,10 @@ header h1 {
     cursor: pointer;
     transition: all 0.2s;
     position: relative;
+<<<<<<< HEAD
     padding: 4px;
+=======
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 .element-cell:active {
@@ -126,6 +175,7 @@ header h1 {
 }
 
 .element-number {
+<<<<<<< HEAD
     font-size: 7px;
     color: var(--gray);
     position: absolute;
@@ -135,11 +185,23 @@ header h1 {
 
 .element-symbol {
     font-size: 14px;
+=======
+    font-size: 8px;
+    color: var(--gray);
+    position: absolute;
+    top: 2px;
+    left: 4px;
+}
+
+.element-symbol {
+    font-size: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
     font-weight: 700;
     color: var(--primary);
 }
 
 .element-name {
+<<<<<<< HEAD
     font-size: 6px;
     color: var(--primary);
     text-align: center;
@@ -151,52 +213,91 @@ header h1 {
 
 .element-mass {
     font-size: 6px;
+=======
+    font-size: 7px;
+    color: var(--primary);
+    text-align: center;
+    line-height: 1;
+}
+
+.element-mass {
+    font-size: 7px;
+>>>>>>> 1b99ac5 (Add files via upload)
     color: var(--gray);
 }
 
 .empty-cell {
+<<<<<<< HEAD
     aspect-ratio: 1;
     min-width: 45px;
+=======
+    width: 60px;
+    height: 60px;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 /* Search View */
 .search-container {
+<<<<<<< HEAD
     padding: 16px;
+=======
+    padding: 20px;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 .search-box {
     display: flex;
     align-items: center;
+<<<<<<< HEAD
     gap: 10px;
     padding: 10px 14px;
     background: var(--light-gray);
     border-radius: 10px;
     margin-bottom: 12px;
+=======
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--light-gray);
+    border-radius: 10px;
+    margin-bottom: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 .search-box svg {
     color: var(--gray);
     flex-shrink: 0;
+<<<<<<< HEAD
     width: 18px;
     height: 18px;
+=======
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 .search-box input {
     flex: 1;
     border: none;
     background: none;
+<<<<<<< HEAD
     font-size: 15px;
+=======
+    font-size: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
     outline: none;
 }
 
 .filter-container {
+<<<<<<< HEAD
     margin-bottom: 12px;
+=======
+    margin-bottom: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 .filter-btn {
     display: flex;
     align-items: center;
     gap: 8px;
+<<<<<<< HEAD
     padding: 8px 14px;
     background: var(--background);
     border: 1px solid var(--primary);
@@ -214,13 +315,32 @@ header h1 {
     display: flex;
     flex-direction: column;
     gap: 0;
+=======
+    padding: 8px 16px;
+    background: var(--background);
+    border: 1px solid var(--primary);
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.search-results {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 .search-result-item {
     display: flex;
     align-items: center;
+<<<<<<< HEAD
     gap: 12px;
     padding: 12px;
+=======
+    gap: 16px;
+    padding: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
     background: var(--background);
     border-bottom: 1px solid var(--border);
     cursor: pointer;
@@ -232,8 +352,13 @@ header h1 {
 }
 
 .result-symbol-box {
+<<<<<<< HEAD
     width: 50px;
     height: 50px;
+=======
+    width: 60px;
+    height: 60px;
+>>>>>>> 1b99ac5 (Add files via upload)
     border: 1px solid var(--primary);
     display: flex;
     flex-direction: column;
@@ -243,17 +368,26 @@ header h1 {
 }
 
 .result-symbol {
+<<<<<<< HEAD
     font-size: 20px;
+=======
+    font-size: 24px;
+>>>>>>> 1b99ac5 (Add files via upload)
     font-weight: 700;
 }
 
 .result-number {
+<<<<<<< HEAD
     font-size: 9px;
+=======
+    font-size: 10px;
+>>>>>>> 1b99ac5 (Add files via upload)
     color: var(--gray);
 }
 
 .result-info {
     flex: 1;
+<<<<<<< HEAD
     min-width: 0;
 }
 
@@ -265,6 +399,18 @@ header h1 {
 
 .result-category {
     font-size: 13px;
+=======
+}
+
+.result-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.result-category {
+    font-size: 14px;
+>>>>>>> 1b99ac5 (Add files via upload)
     color: var(--gray);
     margin-bottom: 2px;
 }
@@ -274,6 +420,7 @@ header h1 {
     color: var(--gray);
 }
 
+<<<<<<< HEAD
 .search-result-item svg {
     width: 18px;
     height: 18px;
@@ -283,12 +430,18 @@ header h1 {
 /* Quiz View */
 .quiz-container {
     padding: 16px;
+=======
+/* Quiz View */
+.quiz-container {
+    padding: 20px;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 .quiz-start {
     display: flex;
     flex-direction: column;
     align-items: center;
+<<<<<<< HEAD
     gap: 24px;
     padding: 30px 16px;
 }
@@ -299,12 +452,28 @@ header h1 {
 
 .quiz-title {
     font-size: 22px;
+=======
+    gap: 32px;
+    padding: 40px 20px;
+}
+
+.quiz-icon {
+    font-size: 80px;
+}
+
+.quiz-title {
+    font-size: 24px;
+>>>>>>> 1b99ac5 (Add files via upload)
     font-weight: 700;
     text-align: center;
 }
 
 .quiz-subtitle {
+<<<<<<< HEAD
     font-size: 15px;
+=======
+    font-size: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
     color: var(--gray);
     text-align: center;
 }
@@ -312,24 +481,38 @@ header h1 {
 .quiz-modes {
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     gap: 12px;
+=======
+    gap: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
     width: 100%;
 }
 
 .quiz-mode-btn {
     display: flex;
     align-items: center;
+<<<<<<< HEAD
     gap: 10px;
     padding: 14px;
     background: var(--background);
     border: 1px solid var(--primary);
     border-radius: 12px;
     font-size: 14px;
+=======
+    gap: 12px;
+    padding: 16px;
+    background: var(--background);
+    border: 1px solid var(--primary);
+    border-radius: 12px;
+    font-size: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
 }
 
+<<<<<<< HEAD
 .quiz-mode-btn svg {
     width: 20px;
     height: 20px;
@@ -341,20 +524,30 @@ header h1 {
     text-align: left;
 }
 
+=======
+>>>>>>> 1b99ac5 (Add files via upload)
 .quiz-mode-btn:active {
     transform: scale(0.98);
     background: var(--light-gray);
 }
 
 .quiz-active {
+<<<<<<< HEAD
     padding: 16px;
+=======
+    padding: 20px;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 .quiz-progress {
     height: 4px;
     background: var(--light-gray);
     border-radius: 2px;
+<<<<<<< HEAD
     margin-bottom: 12px;
+=======
+    margin-bottom: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
     overflow: hidden;
 }
 
@@ -367,6 +560,7 @@ header h1 {
 .quiz-header {
     display: flex;
     justify-content: space-between;
+<<<<<<< HEAD
     margin-bottom: 24px;
     font-size: 13px;
 }
@@ -376,12 +570,24 @@ header h1 {
     font-weight: 600;
     text-align: center;
     margin-bottom: 24px;
+=======
+    margin-bottom: 32px;
+    font-size: 14px;
+}
+
+.quiz-question {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 32px;
+>>>>>>> 1b99ac5 (Add files via upload)
     line-height: 1.4;
 }
 
 .quiz-options {
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     gap: 10px;
     margin-bottom: 24px;
 }
@@ -392,6 +598,18 @@ header h1 {
     border: 2px solid var(--border);
     border-radius: 12px;
     font-size: 15px;
+=======
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.quiz-option {
+    padding: 16px;
+    background: var(--background);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
@@ -420,12 +638,20 @@ header h1 {
 
 .quiz-next-btn {
     width: 100%;
+<<<<<<< HEAD
     padding: 14px;
+=======
+    padding: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
     background: var(--primary);
     color: var(--background);
     border: none;
     border-radius: 12px;
+<<<<<<< HEAD
     font-size: 16px;
+=======
+    font-size: 18px;
+>>>>>>> 1b99ac5 (Add files via upload)
     font-weight: 600;
     cursor: pointer;
 }
@@ -434,6 +660,7 @@ header h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+<<<<<<< HEAD
     gap: 24px;
     padding: 30px 16px;
 }
@@ -444,6 +671,18 @@ header h1 {
 
 .quiz-result-title {
     font-size: 24px;
+=======
+    gap: 32px;
+    padding: 40px 20px;
+}
+
+.quiz-result-icon {
+    font-size: 80px;
+}
+
+.quiz-result-title {
+    font-size: 28px;
+>>>>>>> 1b99ac5 (Add files via upload)
     font-weight: 700;
 }
 
@@ -452,6 +691,7 @@ header h1 {
 }
 
 .quiz-result-label {
+<<<<<<< HEAD
     font-size: 14px;
     color: var(--gray);
     margin-bottom: 6px;
@@ -459,23 +699,44 @@ header h1 {
 
 .quiz-result-number {
     font-size: 40px;
+=======
+    font-size: 16px;
+    color: var(--gray);
+    margin-bottom: 8px;
+}
+
+.quiz-result-number {
+    font-size: 48px;
+>>>>>>> 1b99ac5 (Add files via upload)
     font-weight: 700;
 }
 
 .quiz-result-message {
+<<<<<<< HEAD
     font-size: 15px;
+=======
+    font-size: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
     color: var(--gray);
     text-align: center;
 }
 
 .quiz-restart-btn {
     width: 100%;
+<<<<<<< HEAD
     padding: 14px;
+=======
+    padding: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
     background: var(--primary);
     color: var(--background);
     border: none;
     border-radius: 12px;
+<<<<<<< HEAD
     font-size: 16px;
+=======
+    font-size: 18px;
+>>>>>>> 1b99ac5 (Add files via upload)
     font-weight: 600;
     cursor: pointer;
 }
@@ -492,7 +753,11 @@ header h1 {
     z-index: 2000;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     padding: 16px;
+=======
+    padding: 20px;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 .modal.active {
@@ -504,14 +769,22 @@ header h1 {
     border-radius: 16px;
     max-width: 500px;
     width: 100%;
+<<<<<<< HEAD
     max-height: 85vh;
     overflow-y: auto;
     position: relative;
     padding: 20px;
+=======
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 24px;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 .modal-close {
     position: absolute;
+<<<<<<< HEAD
     top: 12px;
     right: 12px;
     background: none;
@@ -525,15 +798,30 @@ header h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+=======
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: var(--gray);
+    line-height: 1;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 /* Element Detail */
 #element-detail {
+<<<<<<< HEAD
     padding-top: 16px;
+=======
+    padding-top: 20px;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 .detail-header {
     text-align: center;
+<<<<<<< HEAD
     margin-bottom: 20px;
 }
 
@@ -551,36 +839,72 @@ header h1 {
 
 .detail-number {
     font-size: 14px;
+=======
+    margin-bottom: 24px;
+}
+
+.detail-symbol {
+    font-size: 72px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.detail-name {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.detail-number {
+    font-size: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
     color: var(--gray);
 }
 
 .detail-divider {
     height: 1px;
     background: var(--border);
+<<<<<<< HEAD
     margin: 20px 0;
+=======
+    margin: 24px 0;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 .detail-properties {
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     gap: 12px;
     margin-bottom: 20px;
+=======
+    gap: 16px;
+    margin-bottom: 24px;
+>>>>>>> 1b99ac5 (Add files via upload)
 }
 
 .detail-property {
     display: flex;
     justify-content: space-between;
     align-items: center;
+<<<<<<< HEAD
     gap: 12px;
 }
 
 .property-label {
     font-size: 14px;
+=======
+}
+
+.property-label {
+    font-size: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
     font-weight: 500;
     color: var(--gray);
 }
 
 .property-value {
+<<<<<<< HEAD
     font-size: 14px;
     font-weight: 600;
     text-align: right;
@@ -588,13 +912,26 @@ header h1 {
 
 .detail-description-title {
     font-size: 18px;
+=======
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.detail-description-title {
+    font-size: 20px;
+>>>>>>> 1b99ac5 (Add files via upload)
     font-weight: 600;
     margin-bottom: 8px;
 }
 
 .detail-description-text {
+<<<<<<< HEAD
     font-size: 15px;
     line-height: 1.5;
+=======
+    font-size: 16px;
+    line-height: 1.6;
+>>>>>>> 1b99ac5 (Add files via upload)
     color: var(--primary);
 }
 
@@ -603,6 +940,7 @@ header h1 {
     display: flex;
     flex-direction: column;
     gap: 8px;
+<<<<<<< HEAD
     margin-top: 16px;
 }
 
@@ -612,6 +950,17 @@ header h1 {
     border: 1px solid var(--border);
     border-radius: 8px;
     font-size: 15px;
+=======
+    margin-top: 20px;
+}
+
+.filter-option {
+    padding: 16px;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 16px;
+>>>>>>> 1b99ac5 (Add files via upload)
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -623,6 +972,7 @@ header h1 {
     background: var(--light-gray);
 }
 
+<<<<<<< HEAD
 /* Desktop styles */
 @media (min-width: 768px) {
     header h1 {
@@ -689,16 +1039,43 @@ header h1 {
     
     .element-name {
         font-size: 5px;
+=======
+/* Responsive */
+@media (max-width: 768px) {
+    .table-container {
+        padding: 10px;
+    }
+    
+    #periodic-table {
+        grid-template-columns: repeat(18, 50px);
+    }
+    
+    .element-cell, .empty-cell {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .element-symbol {
+        font-size: 14px;
+>>>>>>> 1b99ac5 (Add files via upload)
     }
 }
 
 /* iOS Safari specific */
 @supports (-webkit-touch-callout: none) {
     body {
+<<<<<<< HEAD
         padding-bottom: calc(70px + env(safe-area-inset-bottom));
     }
     
     .bottom-nav {
         padding-bottom: calc(6px + env(safe-area-inset-bottom));
+=======
+        padding-bottom: env(safe-area-inset-bottom, 70px);
+    }
+    
+    .bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom, 8px);
+>>>>>>> 1b99ac5 (Add files via upload)
     }
 }
