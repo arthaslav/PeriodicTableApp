@@ -26,8 +26,6 @@ jobs:
     
     - name: Create Xcode project
       run: |
-        cd PeriodicTableApp
-        
         # Create project directory structure
         mkdir -p PeriodicTableApp.xcodeproj
         
@@ -372,7 +370,6 @@ jobs:
     
     - name: Build iOS app
       run: |
-        cd PeriodicTableApp
         xcodebuild -project PeriodicTableApp.xcodeproj \
                    -scheme PeriodicTableApp \
                    -sdk iphonesimulator \
