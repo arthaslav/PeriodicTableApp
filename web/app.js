@@ -45,22 +45,19 @@ function renderPeriodicTable() {
     const table = document.getElementById('periodic-table');
     table.innerHTML = '';
     
-    // Create 7 periods x 18 groups grid
-    for (let period = 1; period <= 7; period++) {
-        for (let group = 1; group <= 18; group++) {
-            const element = elements.find(e => e.period === period && e.group === group);
-            
-            if (element) {
-                const cell = createElementCell(element);
-                table.appendChild(cell);
-            } else {
-                const emptyCell = document.createElement('div');
-                emptyCell.className = 'empty-cell';
-                table.appendChild(emptyCell);
-            }
-        }
-    }
+    const sortedElements = [...elements].sort((a, b) => {
+        if (a.period !== b.period) return a.period - b.period;
+        return a.group - b.group;
+    });
+    
+    sortedElements.forEach(element => {
+        const cell = createElementCell(element);
+        cell.style.gridColumn = element.group;
+        cell.style.gridRow = element.period;
+        table.appendChild(cell);
+    });
 }
+
 
 function createElementCell(element) {
     const cell = document.createElement('div');
