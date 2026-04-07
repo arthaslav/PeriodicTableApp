@@ -373,7 +373,7 @@ jobs:
         xcodebuild -project PeriodicTableApp.xcodeproj \
                    -scheme PeriodicTableApp \
                    -sdk iphonesimulator \
-                   -destination 'platform=iOS Simulator,name=iPhone 16,OS=26.2' \
+                   -destination 'generic/platform=iOS Simulator' \
                    clean build \
                    CODE_SIGN_IDENTITY="" \
                    CODE_SIGNING_REQUIRED=NO
