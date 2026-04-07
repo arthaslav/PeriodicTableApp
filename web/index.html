@@ -7,100 +7,550 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Таблица Менделеева">
     <title>Таблица Менделеева</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #fff;
+            color: #000;
+            padding-bottom: 60px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+            padding: 12px 16px;
+            z-index: 100;
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-top: 1px solid #ddd;
+            display: flex;
+            z-index: 1000;
+        }
+
+        .nav button {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            background: none;
+            font-size: 11px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .nav button.active {
+            color: #000;
+            font-weight: 600;
+        }
+
+        .view {
+            display: none;
+            padding: 16px;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        /* Таблица */
+        .table-grid {
+            display: grid;
+            grid-template-columns: repeat(18, 1fr);
+            gap: 1px;
+            max-width: 100%;
+        }
+
+        .element {
+            aspect-ratio: 1;
+            border: 0.5px solid #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            font-size: 10px;
+        }
+
+        .element:active {
+            background: #f0f0f0;
+        }
+
+        .element .num {
+            position: absolute;
+            top: 1px;
+            left: 2px;
+            font-size: 6px;
+            color: #666;
+        }
+
+        .element .symbol {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .element .name {
+            font-size: 5px;
+            text-align: center;
+        }
+
+        /* Поиск */
+        .search-box {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        .result {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .result:active {
+            background: #f0f0f0;
+        }
+
+        .result-box {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .result-box .symbol {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .result-info h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .result-info p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Викторина */
+        .quiz-start {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .quiz-start h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .quiz-btn {
+            width: 100%;
+            padding: 16px;
+            margin: 8px 0;
+            border: 1px solid #000;
+            border-radius: 8px;
+            background: #fff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .quiz-btn:active {
+            background: #f0f0f0;
+        }
+
+        .quiz-question {
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .quiz-option {
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: #fff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .quiz-option.correct {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+        .quiz-option.wrong {
+            background: #999;
+            color: #fff;
+            border-color: #999;
+        }
+
+        .quiz-next {
+            width: 100%;
+            padding: 14px;
+            margin-top: 16px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Модалка */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            border: none;
+            background: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .detail-symbol {
+            font-size: 60px;
+            font-weight: 700;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .detail-name {
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .detail-prop {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail-prop span:first-child {
+            color: #666;
+        }
+
+        .detail-prop span:last-child {
+            font-weight: 600;
+        }
+
+        @media (min-width: 768px) {
+            .table-grid {
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            
+            .element .symbol {
+                font-size: 14px;
+            }
+            
+            .element .name {
+                font-size: 6px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <!-- Navigation -->
-        <nav class="bottom-nav">
-            <button class="nav-btn active" data-view="table">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="3" width="7" height="7"></rect>
-                    <rect x="3" y="14" width="7" height="7"></rect>
-                    <rect x="14" y="14" width="7" height="7"></rect>
-                </svg>
-                <span>Таблица</span>
-            </button>
-            <button class="nav-btn" data-view="search">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                </svg>
-                <span>Поиск</span>
-            </button>
-            <button class="nav-btn" data-view="quiz">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                </svg>
-                <span>Викторина</span>
-            </button>
-        </nav>
-
-        <!-- Table View -->
+        <!-- Таблица -->
         <div id="table-view" class="view active">
-            <header>
-                <h1>Таблица Менделеева</h1>
-            </header>
-            <div class="table-container">
-                <div id="periodic-table"></div>
+            <header><h1>Таблица Менделеева</h1></header>
+            <div style="padding: 8px;">
+                <div id="table" class="table-grid"></div>
             </div>
         </div>
 
-        <!-- Search View -->
+        <!-- Поиск -->
         <div id="search-view" class="view">
-            <header>
-                <h1>Поиск</h1>
-            </header>
-            <div class="search-container">
-                <div class="search-box">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                    <input type="text" id="search-input" placeholder="Поиск по названию, символу или номеру">
-                </div>
-                <div class="filter-container">
-                    <button id="filter-btn" class="filter-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-                        </svg>
-                        <span id="filter-text">Все категории</span>
-                    </button>
-                </div>
-                <div id="search-results" class="search-results"></div>
-            </div>
+            <header><h1>Поиск</h1></header>
+            <input type="text" id="search-input" class="search-box" placeholder="Поиск элемента...">
+            <div id="search-results"></div>
         </div>
 
-        <!-- Quiz View -->
+        <!-- Викторина -->
         <div id="quiz-view" class="view">
-            <header>
-                <h1>Викторина</h1>
-            </header>
-            <div id="quiz-container" class="quiz-container"></div>
+            <header><h1>Викторина</h1></header>
+            <div id="quiz-content"></div>
         </div>
 
-        <!-- Element Detail Modal -->
-        <div id="element-modal" class="modal">
-            <div class="modal-content">
-                <button class="modal-close">&times;</button>
-                <div id="element-detail"></div>
-            </div>
+        <!-- Навигация -->
+        <div class="nav">
+            <button onclick="showView('table')" class="active">Таблица</button>
+            <button onclick="showView('search')">Поиск</button>
+            <button onclick="showView('quiz')">Викторина</button>
         </div>
 
-        <!-- Filter Modal -->
-        <div id="filter-modal" class="modal">
-            <div class="modal-content">
-                <button class="modal-close">&times;</button>
-                <h2>Фильтр по категории</h2>
-                <div id="filter-options"></div>
+        <!-- Модалка -->
+        <div id="modal" class="modal" onclick="closeModal(event)">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+                <div id="modal-body"></div>
             </div>
         </div>
     </div>
 
-    <script src="data.js"></script>
-    <script src="app.js"></script>
+    <script>
+        // Данные элементов
+        const elements = [
+            {id: 1, symbol: "H", name: "Водород", mass: 1.008, category: "Неметалл", group: 1, period: 1, config: "1s¹", desc: "Самый легкий элемент"},
+            {id: 2, symbol: "He", name: "Гелий", mass: 4.003, category: "Благородный газ", group: 18, period: 1, config: "1s²", desc: "Инертный газ"},
+            {id: 3, symbol: "Li", name: "Литий", mass: 6.941, category: "Щелочной металл", group: 1, period: 2, config: "[He] 2s¹", desc: "Самый легкий металл"},
+            {id: 4, symbol: "Be", name: "Бериллий", mass: 9.012, category: "Щелочноземельный металл", group: 2, period: 2, config: "[He] 2s²", desc: "Легкий металл"},
+            {id: 5, symbol: "B", name: "Бор", mass: 10.81, category: "Металлоид", group: 13, period: 2, config: "[He] 2s² 2p¹", desc: "Металлоид"},
+            {id: 6, symbol: "C", name: "Углерод", mass: 12.01, category: "Неметалл", group: 14, period: 2, config: "[He] 2s² 2p²", desc: "Основа жизни"},
+            {id: 7, symbol: "N", name: "Азот", mass: 14.01, category: "Неметалл", group: 15, period: 2, config: "[He] 2s² 2p³", desc: "78% атмосферы"},
+            {id: 8, symbol: "O", name: "Кислород", mass: 16.00, category: "Неметалл", group: 16, period: 2, config: "[He] 2s² 2p⁴", desc: "21% атмосферы"},
+            {id: 9, symbol: "F", name: "Фтор", mass: 19.00, category: "Галоген", group: 17, period: 2, config: "[He] 2s² 2p⁵", desc: "Самый реактивный"},
+            {id: 10, symbol: "Ne", name: "Неон", mass: 20.18, category: "Благородный газ", group: 18, period: 2, config: "[He] 2s² 2p⁶", desc: "Неоновые лампы"},
+            {id: 11, symbol: "Na", name: "Натрий", mass: 22.99, category: "Щелочной металл", group: 1, period: 3, config: "[Ne] 3s¹", desc: "Поваренная соль"},
+            {id: 12, symbol: "Mg", name: "Магний", mass: 24.31, category: "Щелочноземельный металл", group: 2, period: 3, config: "[Ne] 3s²", desc: "Легкий металл"},
+            {id: 13, symbol: "Al", name: "Алюминий", mass: 26.98, category: "Постпереходный металл", group: 13, period: 3, config: "[Ne] 3s² 3p¹", desc: "Легкий и прочный"},
+            {id: 14, symbol: "Si", name: "Кремний", mass: 28.09, category: "Металлоид", group: 14, period: 3, config: "[Ne] 3s² 3p²", desc: "Полупроводник"},
+            {id: 15, symbol: "P", name: "Фосфор", mass: 30.97, category: "Неметалл", group: 15, period: 3, config: "[Ne] 3s² 3p³", desc: "Важен для ДНК"},
+            {id: 16, symbol: "S", name: "Сера", mass: 32.07, category: "Неметалл", group: 16, period: 3, config: "[Ne] 3s² 3p⁴", desc: "Желтый неметалл"},
+            {id: 17, symbol: "Cl", name: "Хлор", mass: 35.45, category: "Галоген", group: 17, period: 3, config: "[Ne] 3s² 3p⁵", desc: "Дезинфекция"},
+            {id: 18, symbol: "Ar", name: "Аргон", mass: 39.95, category: "Благородный газ", group: 18, period: 3, config: "[Ne] 3s² 3p⁶", desc: "1% атмосферы"},
+            {id: 19, symbol: "K", name: "Калий", mass: 39.10, category: "Щелочной металл", group: 1, period: 4, config: "[Ar] 4s¹", desc: "Нервная система"},
+            {id: 20, symbol: "Ca", name: "Кальций", mass: 40.08, category: "Щелочноземельный металл", group: 2, period: 4, config: "[Ar] 4s²", desc: "Кости и зубы"}
+        ];
+
+        let quizMode = null;
+        let quizQuestions = [];
+        let currentQ = 0;
+        let score = 0;
+        let answered = false;
+
+        // Показать вкладку
+        function showView(view) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(view + '-view').classList.add('active');
+            document.querySelectorAll('.nav button').forEach((btn, i) => {
+                btn.classList.toggle('active', ['table','search','quiz'][i] === view);
+            });
+            if (view === 'quiz') renderQuizStart();
+        }
+
+        // Таблица
+        function renderTable() {
+            const table = document.getElementById('table');
+            elements.forEach(el => {
+                const div = document.createElement('div');
+                div.className = 'element';
+                div.style.gridColumn = el.group;
+                div.style.gridRow = el.period;
+                div.innerHTML = `
+                    <span class="num">${el.id}</span>
+                    <span class="symbol">${el.symbol}</span>
+                    <span class="name">${el.name}</span>
+                `;
+                div.onclick = () => showDetail(el);
+                table.appendChild(div);
+            });
+        }
+
+        // Детали элемента
+        function showDetail(el) {
+            document.getElementById('modal-body').innerHTML = `
+                <div class="detail-symbol">${el.symbol}</div>
+                <div class="detail-name">${el.name}</div>
+                <div class="detail-prop"><span>Атомный номер</span><span>${el.id}</span></div>
+                <div class="detail-prop"><span>Атомная масса</span><span>${el.mass}</span></div>
+                <div class="detail-prop"><span>Категория</span><span>${el.category}</span></div>
+                <div class="detail-prop"><span>Группа</span><span>${el.group}</span></div>
+                <div class="detail-prop"><span>Период</span><span>${el.period}</span></div>
+                <div class="detail-prop"><span>Конфигурация</span><span>${el.config}</span></div>
+                <p style="margin-top: 20px; line-height: 1.5;">${el.desc}</p>
+            `;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closeModal(e) {
+            if (!e || e.target.id === 'modal') {
+                document.getElementById('modal').classList.remove('active');
+            }
+        }
+
+        // Поиск
+        document.getElementById('search-input').oninput = (e) => {
+            const q = e.target.value.toLowerCase();
+            const results = elements.filter(el => 
+                el.name.toLowerCase().includes(q) || 
+                el.symbol.toLowerCase().includes(q) ||
+                el.id.toString().includes(q)
+            );
+            const html = results.map(el => `
+                <div class="result" onclick="showDetail(elements[${elements.indexOf(el)}])">
+                    <div class="result-box">
+                        <div class="symbol">${el.symbol}</div>
+                        <div style="font-size: 9px; color: #666;">${el.id}</div>
+                    </div>
+                    <div class="result-info">
+                        <h3>${el.name}</h3>
+                        <p>${el.category}</p>
+                        <p>Масса: ${el.mass}</p>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('search-results').innerHTML = html || '<p style="padding: 20px; text-align: center; color: #666;">Ничего не найдено</p>';
+        };
+
+        // Викторина
+        function renderQuizStart() {
+            document.getElementById('quiz-content').innerHTML = `
+                <div class="quiz-start">
+                    <h2>Проверьте знания</h2>
+                    <p style="color: #666; margin-bottom: 24px;">Выберите режим викторины</p>
+                    <button class="quiz-btn" onclick="startQuiz('symbol')">Угадай элемент по символу</button>
+                    <button class="quiz-btn" onclick="startQuiz('element')">Угадай символ по элементу</button>
+                    <button class="quiz-btn" onclick="startQuiz('number')">Угадай атомный номер</button>
+                </div>
+            `;
+        }
+
+        function startQuiz(mode) {
+            quizMode = mode;
+            currentQ = 0;
+            score = 0;
+            answered = false;
+            quizQuestions = elements.slice(0, 10).map(el => {
+                const others = elements.filter(e => e.id !== el.id).sort(() => Math.random() - 0.5);
+                let q, correct, opts;
+                if (mode === 'symbol') {
+                    q = `Какой элемент имеет символ ${el.symbol}?`;
+                    correct = el.name;
+                    opts = [el.name, others[0].name, others[1].name, others[2].name];
+                } else if (mode === 'element') {
+                    q = `Какой символ у элемента ${el.name}?`;
+                    correct = el.symbol;
+                    opts = [el.symbol, others[0].symbol, others[1].symbol, others[2].symbol];
+                } else {
+                    q = `Какой атомный номер у ${el.name}?`;
+                    correct = el.id.toString();
+                    opts = [el.id.toString(), others[0].id.toString(), others[1].id.toString(), others[2].id.toString()];
+                }
+                return {q, correct, opts: opts.sort(() => Math.random() - 0.5)};
+            });
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const quiz = quizQuestions[currentQ];
+            document.getElementById('quiz-content').innerHTML = `
+                <div style="padding: 16px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 16px; font-size: 13px;">
+                        <span>Вопрос ${currentQ + 1} из 10</span>
+                        <span>Счет: ${score}</span>
+                    </div>
+                    <div class="quiz-question">${quiz.q}</div>
+                    ${quiz.opts.map(opt => `<button class="quiz-option" onclick="selectAnswer('${opt}')">${opt}</button>`).join('')}
+                    <button class="quiz-next" style="display: none;" onclick="nextQuestion()">Далее</button>
+                </div>
+            `;
+        }
+
+        function selectAnswer(ans) {
+            if (answered) return;
+            answered = true;
+            const quiz = quizQuestions[currentQ];
+            const correct = ans === quiz.correct;
+            if (correct) score++;
+            
+            document.querySelectorAll('.quiz-option').forEach(btn => {
+                btn.disabled = true;
+                if (btn.textContent === quiz.correct) btn.classList.add('correct');
+                else if (btn.textContent === ans && !correct) btn.classList.add('wrong');
+            });
+            document.querySelector('.quiz-next').style.display = 'block';
+        }
+
+        function nextQuestion() {
+            answered = false;
+            currentQ++;
+            if (currentQ >= 10) {
+                showResult();
+            } else {
+                renderQuestion();
+            }
+        }
+
+        function showResult() {
+            const msg = score >= 9 ? 'Отлично!' : score >= 7 ? 'Хорошо!' : score >= 5 ? 'Неплохо!' : 'Попробуйте еще!';
+            document.getElementById('quiz-content').innerHTML = `
+                <div class="quiz-start">
+                    <h2>Викторина завершена!</h2>
+                    <div style="font-size: 48px; font-weight: 700; margin: 24px 0;">${score} / 10</div>
+                    <p style="color: #666; margin-bottom: 24px;">${msg}</p>
+                    <button class="quiz-btn" onclick="renderQuizStart()">Начать заново</button>
+                </div>
+            `;
+        }
+
+        // Инициализация
+        renderTable();
+        document.getElementById('search-input').oninput({target: {value: ''}});
+    </script>
 </body>
 </html>
